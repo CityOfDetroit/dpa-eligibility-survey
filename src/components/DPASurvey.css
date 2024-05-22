@@ -1,0 +1,41 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;700&display=swap');
+:host{
+    --color-1: #004445;
+    --color-2: #9FD5B3;
+    --color-3: #feb70d;
+    --color-4: #b3393b;
+    --color-5: #e6e6e6;
+    --color-light: #fff;
+    --color-dark: #000;
+    --font-family: 'Montserrat', sans-serif;
+}
+#app-content{
+    font-family: var(--font-family);
+}
+.accordion-header{
+    background-color: var(--color-3);
+    color: var(--color-dark);
+}
+.pass-q{
+    color: var(--color-1);
+}
+
+.fail-q{
+    color: var(--color-4);
+}
+
+.logo img{
+    width: 12em;
+    margin: auto;
+}
+
+.alert-danger{
+    background-color: var(--color-1);
+    color: var(--color-light);
+}
+
+.success{
+    background-color: var(--color-2);
+    color: var(--color-dark);
+    padding: 1em;
+}
