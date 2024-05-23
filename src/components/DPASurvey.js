@@ -45,8 +45,8 @@ export default class DPASurvey extends HTMLElement {
       case "0":
         this.appContent.innerHTML = `
         <div class="row">
-          <p>Welcome to the elegibility checker for the Detroit Down Payment Assistance Program</p>
-          <p>You will need to answer a few questions before you can apply for the program.</p>
+          <p class="text-center">Welcome to the elegibility checker for the Detroit Down Payment Assistance Program</p>
+          <p class="text-center">You will need to answer a few questions before you can apply for the program.</p>
         </div>
         <div class="d-flex">
           <div class="m-auto">
