@@ -1,5 +1,14 @@
 import bootstrap from "!!raw-loader!bootstrap/dist/css/bootstrap.min.css";
 import styles from "!!raw-loader!./DPASurvey.css";
+
+const template = document.createElement('template');
+template.innerHTML = `
+<div class="row">
+  <div id="app-content" class="col-xs-12 col-sm-12 col-md-8 m-auto">
+  </div>
+</div>
+`;
+
 export default class DPASurvey extends HTMLElement {
   static get observedAttributes() {
     return ["data-step"];
@@ -10,7 +19,8 @@ export default class DPASurvey extends HTMLElement {
     super();
 
     // Create a shadow root
-    const shadow = this.attachShadow({ mode: "open" });
+    const shadow = this.attachShadow({ mode: 'open' });
+    shadow.appendChild(template.content.cloneNode(true));
 
     // Adding styles
     const bStyles = document.createElement("style");
@@ -20,14 +30,8 @@ export default class DPASurvey extends HTMLElement {
     shadow.appendChild(bStyles);
     shadow.appendChild(rcStyles);
 
-    // Create result section
-    this.appContent = document.createElement("div");
-    this.appContent.id = "app-content";
-    this.appContent.className = "col-xs-12 col-sm-12 col-md-8 m-auto";
-    let row = document.createElement("div");
-    row.className = "row";
-    row.appendChild(this.appContent);
-    shadow.appendChild(row);
+    // Assign result section
+    this.appContent = shadow.querySelector('#app-content');
 
     // Track answers
     this.answers = [];
