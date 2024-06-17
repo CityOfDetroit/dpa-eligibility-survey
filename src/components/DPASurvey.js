@@ -241,6 +241,34 @@ export default class DPASurvey extends HTMLElement {
 
       case "8":
         this.appContent.innerHTML = `
+        <style>
+        </style>
+        <div class="row">
+        <p>What is the name of the lender that pre-approved the purchase?</p>
+        </div>
+        <div class="d-flex">
+        <form class="m-auto">
+        
+        <label for="lenderName" class="form-label">Lender Name</label>
+        <input type="text" required class="form-control" id="lenderName" aria-describedby="lenderNameHelp">
+        <div id="lenderNameHelp" class="form-text mb-3">The name of the lender that pre-approved the purchase.</div>
+        <cod-button data-id="next" data-background-color="primary" data-label="Next" data-primary="true" data-img-alt="" data-icon=""></cod-button>
+        </form>
+        </div>
+        `;
+        const step8Form = shadow.querySelector("form");
+        step8Form.addEventListener("submit", (e) => {
+          e.preventDefault();
+          const inputElement = this.appContent.querySelector("input");
+          if (inputElement.validity.valid) {
+            rc.answers.push("pass");
+            rc.setAttribute("data-step", "9");
+          }
+        });
+        break;
+
+      case "9":
+        this.appContent.innerHTML = `
         <div class="row">
         <p>Have you attended a homebuyer education course and received a certificate of completion?</p>
         </div>
@@ -258,7 +286,7 @@ export default class DPASurvey extends HTMLElement {
               if (e.target.getAttribute("data-label") == "Yes") {
                 // TODO: Ask for agency name in dropdown list.
                 rc.answers.push("pass");
-                rc.setAttribute("data-step", "9");
+                rc.setAttribute("data-step", "10");
               } else {
                 rc.setAttribute("data-step", "7");
               }
@@ -267,7 +295,54 @@ export default class DPASurvey extends HTMLElement {
         });
         break;
 
-      case "9":
+      case "10":
+        this.appContent.innerHTML = `
+        <style>
+        </style>
+        <div class="row">
+        <p>From which agency did you receive the homebuyer education certifcate?</p>
+        </div>
+        <div class="d-flex">
+        <form class="m-auto">
+        
+        <label for="educationAgency" class="form-label">Agency Name</label>
+        <select id="educationAgency" class="form-select" aria-describedby="agencyNameHelp" required>
+          <option value="">Please choose an agency</option>
+          <option value="Abayomi Community Development Corporation">Abayomi Community Development Corporation</option>
+          <option value="Bridging Communities">Bridging Communities</option>
+          <option value="Central Detroit Christian Community Development Corporation (CDC CDC)">Central Detroit Christian Community Development Corporation (CDC CDC)</option>
+          <option value="Detroit Hispanic Development Corporation (DHDC)">Detroit Hispanic Development Corporation (DHDC)</option>
+          <option value="Framework">Framework</option>
+          <option value="Gesher Human Services">Gesher Human Services</option>
+          <option value="Jefferson East, Inc.">Jefferson East, Inc.</option>
+          <option value="Jewish Vocational Services (JVS)">Jewish Vocational Services (JVS)</option>
+          <option value="Matrix Human Services">Matrix Human Services</option>
+          <option value="MiWealth (formerly Southwest Solutions)">MiWealth (formerly Southwest Solutions)</option>
+          <option value="MSU Extension">MSU Extension</option>
+          <option value="Neighborhood Assistance Corporation of America (NACA)">Neighborhood Assistance Corporation of America (NACA)</option>
+          <option value="National Faith Homebuyers">National Faith Homebuyers</option>
+          <option value="NID Housing Counseling Agency">NID Housing Counseling Agency</option>
+          <option value="U-SNAP-BAC">U-SNAP-BAC</option>
+          <option value="Wayne Metropolitan Community Action Agency (Wayne Metro)">Wayne Metropolitan Community Action Agency (Wayne Metro)</option>
+          <option value="Other">Other</option>
+        </select>
+        <div id="agencyNameHelp" class="form-text mb-3">The name of the agency that gave you the homebuyer education certificate.</div>
+        <cod-button data-id="next" data-background-color="primary" data-label="Next" data-primary="true" data-img-alt="" data-icon=""></cod-button>
+        </form>
+        </div>
+        `;
+        const step10Form = shadow.querySelector("form");
+        step10Form.addEventListener("submit", (e) => {
+          e.preventDefault();
+          const select = this.appContent.querySelector("select");
+          if (select.validity.valid) {
+            rc.answers.push("pass");
+            rc.setAttribute("data-step", "11");
+          }
+        });
+        break;
+
+      case "11":
         this.appContent.innerHTML = `
         <div class="row">
         <p>Have you identified the property you want to receive down payment assistance to purchase?</p>
@@ -285,7 +360,7 @@ export default class DPASurvey extends HTMLElement {
             if (e.target.getAttribute("data-label") != null) {
               if (e.target.getAttribute("data-label") == "Yes") {
                 rc.answers.push("pass");
-                rc.setAttribute("data-step", "10");
+                rc.setAttribute("data-step", "12");
               } else {
                 rc.setAttribute("data-step", "7");
               }
@@ -294,7 +369,7 @@ export default class DPASurvey extends HTMLElement {
         });
         break;
 
-      case "10":
+      case "12":
         this.appContent.innerHTML = `
         <div class="row">
         <p>Do you have a purchase agreement?</p>
@@ -312,7 +387,7 @@ export default class DPASurvey extends HTMLElement {
             if (e.target.getAttribute("data-label") != null) {
               if (e.target.getAttribute("data-label") == "Yes") {
                 rc.answers.push("pass");
-                rc.setAttribute("data-step", "11");
+                rc.setAttribute("data-step", "13");
               } else {
                 rc.setAttribute("data-step", "7");
               }
@@ -321,7 +396,7 @@ export default class DPASurvey extends HTMLElement {
         });
         break;
 
-      case "11":
+      case "13":
         this.appContent.innerHTML = `
         <div class="row">
             <p><strong>You are ready to go!</strong></p>
