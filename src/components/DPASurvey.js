@@ -90,21 +90,40 @@ export default class DPASurvey extends HTMLElement {
         this.appContent.innerHTML = `
         <div class="row">
         <p><strong>Unfortunately, you may not qualify for the Detroit Downpayment Assistance program because you do not meet the residency requirements.</strong></p>
-        <p>In order to receive this assistance, you must have lived in the City of Detroit for the last 12 months or lost property to tax foreclosure in the City of Detroit between 2010 – 2016.</p>
+        <p>In order to receive this assistance, you must have residency verification documents showing you lived in the City of Detroit for the last 12 months or lost property to tax foreclosure in the City of Detroit between 2010 – 2016.</p>
         <p>If your circumstances change you may qualify in the future.</p>
+        </div>
+        `;
+        break;
+
+      case "3":
+        this.appContent.innerHTML = `
+        <div class="row">
+        <p>Can you produce residency verification documents such as an ID issued at least 12-months prior at a Detroit address, signed lease agreement, 12 months of bill statements with a strong preference for utility bills, etc?</p>
+        </div>
+        <div class="d-flex">
+        <div class="m-auto">
+        <cod-button data-id="yes" data-label="Yes" data-background-color="primary" data-primary="true" data-img-alt="" data-icon=""></cod-button>
+        <cod-button data-id="no" data-background-color="primary" data-label="No" data-primary="true" data-img-alt="" data-icon=""></cod-button>
+        </div>
         </div>
         `;
         qBtns = shadow.querySelectorAll("cod-button");
         qBtns.forEach((btn) => {
           btn.addEventListener("click", (e) => {
-            if (e.target.getAttribute("data-label") == "Next") {
-              rc.setAttribute("data-step", "4");
+            if (e.target.getAttribute("data-label") != null) {
+              if (e.target.getAttribute("data-label") == "Yes") {
+                rc.answers.push("pass");
+                rc.setAttribute("data-step", "4");
+              } else {
+                rc.setAttribute("data-step", "2");
+              }
             }
           });
         });
         break;
 
-      case "3":
+      case "4":
         this.appContent.innerHTML = `
         <div class="row">
         <p>Do you make equal to or less than the income for your household size according to this chart?</p>
@@ -164,16 +183,16 @@ export default class DPASurvey extends HTMLElement {
             if (e.target.getAttribute("data-label") != null) {
               if (e.target.getAttribute("data-label") == "Yes") {
                 rc.answers.push("pass");
-                rc.setAttribute("data-step", "5");
+                rc.setAttribute("data-step", "6");
               } else {
-                rc.setAttribute("data-step", "4");
+                rc.setAttribute("data-step", "5");
               }
             }
           });
         });
         break;
 
-      case "4":
+      case "5":
         this.appContent.innerHTML = `
         <div class="row">
         <p><strong>Unfortunately, you may not qualify for the Detroit Downpayment Assistance program because you do not meet income requirements.</strong></p>
@@ -183,7 +202,7 @@ export default class DPASurvey extends HTMLElement {
         `;
         break;
 
-      case "5":
+      case "6":
         this.appContent.innerHTML = `
         <div class="row">
         <p>Are you pre-approved by a lender to purchase the property?</p>
@@ -200,17 +219,18 @@ export default class DPASurvey extends HTMLElement {
           btn.addEventListener("click", (e) => {
             if (e.target.getAttribute("data-label") != null) {
               if (e.target.getAttribute("data-label") == "Yes") {
+                // TODO: Ask for lenders name as text input.
                 rc.answers.push("pass");
-                rc.setAttribute("data-step", "7");
+                rc.setAttribute("data-step", "8");
               } else {
-                rc.setAttribute("data-step", "6");
+                rc.setAttribute("data-step", "7");
               }
             }
           });
         });
         break;
 
-      case "6":
+      case "7":
         this.appContent.innerHTML = `
         <div class="row">
         <p><strong>Unfortunately, you have not completed all the requirements to apply.</strong></p>
@@ -219,7 +239,7 @@ export default class DPASurvey extends HTMLElement {
         `;
         break;
 
-      case "7":
+      case "8":
         this.appContent.innerHTML = `
         <div class="row">
         <p>Have you attended a homebuyer education course and received a certificate of completion?</p>
@@ -236,17 +256,18 @@ export default class DPASurvey extends HTMLElement {
           btn.addEventListener("click", (e) => {
             if (e.target.getAttribute("data-label") != null) {
               if (e.target.getAttribute("data-label") == "Yes") {
+                // TODO: Ask for agency name in dropdown list.
                 rc.answers.push("pass");
-                rc.setAttribute("data-step", "8");
+                rc.setAttribute("data-step", "9");
               } else {
-                rc.setAttribute("data-step", "6");
+                rc.setAttribute("data-step", "7");
               }
             }
           });
         });
         break;
 
-      case "8":
+      case "9":
         this.appContent.innerHTML = `
         <div class="row">
         <p>Have you identified the property you want to receive down payment assistance to purchase?</p>
@@ -264,16 +285,43 @@ export default class DPASurvey extends HTMLElement {
             if (e.target.getAttribute("data-label") != null) {
               if (e.target.getAttribute("data-label") == "Yes") {
                 rc.answers.push("pass");
-                rc.setAttribute("data-step", "9");
+                rc.setAttribute("data-step", "10");
               } else {
-                rc.setAttribute("data-step", "6");
+                rc.setAttribute("data-step", "7");
               }
             }
           });
         });
         break;
 
-      case "9":
+      case "10":
+        this.appContent.innerHTML = `
+        <div class="row">
+        <p>Do you have a purchase agreement?</p>
+        </div>
+        <div class="d-flex">
+        <div class="m-auto">
+        <cod-button data-id="yes" data-label="Yes" data-background-color="primary" data-primary="true" data-img-alt="" data-icon=""></cod-button>
+        <cod-button data-id="no" data-background-color="primary" data-label="No" data-primary="true" data-img-alt="" data-icon=""></cod-button>
+        </div>
+        </div>
+        `;
+        qBtns = shadow.querySelectorAll("cod-button");
+        qBtns.forEach((btn) => {
+          btn.addEventListener("click", (e) => {
+            if (e.target.getAttribute("data-label") != null) {
+              if (e.target.getAttribute("data-label") == "Yes") {
+                rc.answers.push("pass");
+                rc.setAttribute("data-step", "11");
+              } else {
+                rc.setAttribute("data-step", "7");
+              }
+            }
+          });
+        });
+        break;
+
+      case "11":
         this.appContent.innerHTML = `
         <div class="row">
             <p><strong>You are ready to go!</strong></p>
