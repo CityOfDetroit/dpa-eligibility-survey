@@ -272,7 +272,7 @@ export default class DPASurvey extends HTMLElement {
         this.appContent.innerHTML = `
         <div class="row">
           <p><strong>Unfortunately, you have not completed all the requirements to apply.</strong></p>
-          <p>Please visit our <a href="https://training.detroitmi.gov/departments/housing-and-revitalization-department/detroit-down-payment-assistance-program/am-i-ready">"Am I Ready?</a> page to complete all the pre-requisites.</p>
+          <p>Please visit our <a href="/departments/housing-and-revitalization-department/detroit-down-payment-assistance-program/am-i-ready">"Am I Ready?</a> page to complete all the pre-requisites.</p>
         </div>
         <div class="d-flex">
           <div class="ms-auto">
