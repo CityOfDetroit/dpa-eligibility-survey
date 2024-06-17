@@ -256,8 +256,8 @@ export default class DPASurvey extends HTMLElement {
         </form>
         </div>
         `;
-        const form = shadow.querySelector("form");
-        form.addEventListener("submit", (e) => {
+        const step8Form = shadow.querySelector("form");
+        step8Form.addEventListener("submit", (e) => {
           e.preventDefault();
           const inputElement = this.appContent.querySelector("input");
           if (inputElement.validity.valid) {
@@ -297,35 +297,55 @@ export default class DPASurvey extends HTMLElement {
 
       case "10":
         this.appContent.innerHTML = `
+        <style>
+        </style>
         <div class="row">
-        <p>Have you identified the property you want to receive down payment assistance to purchase?</p>
+        <p>From which agency did you receive the homebuyer education certifcate?</p>
         </div>
         <div class="d-flex">
-        <div class="m-auto">
-        <cod-button data-id="yes" data-label="Yes" data-background-color="primary" data-primary="true" data-img-alt="" data-icon=""></cod-button>
-        <cod-button data-id="no" data-background-color="primary" data-label="No" data-primary="true" data-img-alt="" data-icon=""></cod-button>
-        </div>
+        <form class="m-auto">
+        
+        <label for="educationAgency" class="form-label">Agency Name</label>
+        <select id="educationAgency" class="form-select" aria-describedby="agencyNameHelp" required>
+          <option value="">Please choose an agency</option>
+          <option value="Abayomi Community Development Corporation">Abayomi Community Development Corporation</option>
+          <option value="Bridging Communities">Bridging Communities</option>
+          <option value="Central Detroit Christian Community Development Corporation (CDC CDC)">Central Detroit Christian Community Development Corporation (CDC CDC)</option>
+          <option value="Detroit Hispanic Development Corporation (DHDC)">Detroit Hispanic Development Corporation (DHDC)</option>
+          <option value="Framework">Framework</option>
+          <option value="Gesher Human Services">Gesher Human Services</option>
+          <option value="Jefferson East, Inc.">Jefferson East, Inc.</option>
+          <option value="Jewish Vocational Services (JVS)">Jewish Vocational Services (JVS)</option>
+          <option value="Matrix Human Services">Matrix Human Services</option>
+          <option value="MiWealth (formerly Southwest Solutions)">MiWealth (formerly Southwest Solutions)</option>
+          <option value="MSU Extension">MSU Extension</option>
+          <option value="Neighborhood Assistance Corporation of America (NACA)">Neighborhood Assistance Corporation of America (NACA)</option>
+          <option value="National Faith Homebuyers">National Faith Homebuyers</option>
+          <option value="NID Housing Counseling Agency">NID Housing Counseling Agency</option>
+          <option value="U-SNAP-BAC">U-SNAP-BAC</option>
+          <option value="Wayne Metropolitan Community Action Agency (Wayne Metro)">Wayne Metropolitan Community Action Agency (Wayne Metro)</option>
+          <option value="Other">Other</option>
+        </select>
+        <div id="agencyNameHelp" class="form-text mb-3">The name of the agency that gave you the homebuyer education certificate.</div>
+        <cod-button data-id="next" data-background-color="primary" data-label="Next" data-primary="true" data-img-alt="" data-icon=""></cod-button>
+        </form>
         </div>
         `;
-        qBtns = shadow.querySelectorAll("cod-button");
-        qBtns.forEach((btn) => {
-          btn.addEventListener("click", (e) => {
-            if (e.target.getAttribute("data-label") != null) {
-              if (e.target.getAttribute("data-label") == "Yes") {
-                rc.answers.push("pass");
-                rc.setAttribute("data-step", "11");
-              } else {
-                rc.setAttribute("data-step", "7");
-              }
-            }
-          });
+        const step10Form = shadow.querySelector("form");
+        step10Form.addEventListener("submit", (e) => {
+          e.preventDefault();
+          const select = this.appContent.querySelector("select");
+          if (select.validity.valid) {
+            rc.answers.push("pass");
+            rc.setAttribute("data-step", "11");
+          }
         });
         break;
 
       case "11":
         this.appContent.innerHTML = `
         <div class="row">
-        <p>Do you have a purchase agreement?</p>
+        <p>Have you identified the property you want to receive down payment assistance to purchase?</p>
         </div>
         <div class="d-flex">
         <div class="m-auto">
@@ -350,6 +370,33 @@ export default class DPASurvey extends HTMLElement {
         break;
 
       case "12":
+        this.appContent.innerHTML = `
+        <div class="row">
+        <p>Do you have a purchase agreement?</p>
+        </div>
+        <div class="d-flex">
+        <div class="m-auto">
+        <cod-button data-id="yes" data-label="Yes" data-background-color="primary" data-primary="true" data-img-alt="" data-icon=""></cod-button>
+        <cod-button data-id="no" data-background-color="primary" data-label="No" data-primary="true" data-img-alt="" data-icon=""></cod-button>
+        </div>
+        </div>
+        `;
+        qBtns = shadow.querySelectorAll("cod-button");
+        qBtns.forEach((btn) => {
+          btn.addEventListener("click", (e) => {
+            if (e.target.getAttribute("data-label") != null) {
+              if (e.target.getAttribute("data-label") == "Yes") {
+                rc.answers.push("pass");
+                rc.setAttribute("data-step", "13");
+              } else {
+                rc.setAttribute("data-step", "7");
+              }
+            }
+          });
+        });
+        break;
+
+      case "13":
         this.appContent.innerHTML = `
         <div class="row">
             <p><strong>You are ready to go!</strong></p>
