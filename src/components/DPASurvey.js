@@ -241,6 +241,34 @@ export default class DPASurvey extends HTMLElement {
 
       case "8":
         this.appContent.innerHTML = `
+        <style>
+        </style>
+        <div class="row">
+        <p>What is the name of the lender that pre-approved the purchase?</p>
+        </div>
+        <div class="d-flex">
+        <form class="m-auto">
+        
+        <label for="lenderName" class="form-label">Lender Name</label>
+        <input type="text" required class="form-control" id="lenderName" aria-describedby="lenderNameHelp">
+        <div id="lenderNameHelp" class="form-text mb-3">The name of the lender that pre-approved the purchase.</div>
+        <cod-button data-id="next" data-background-color="primary" data-label="Next" data-primary="true" data-img-alt="" data-icon=""></cod-button>
+        </form>
+        </div>
+        `;
+        const form = shadow.querySelector("form");
+        form.addEventListener("submit", (e) => {
+          e.preventDefault();
+          const inputElement = this.appContent.querySelector("input");
+          if (inputElement.validity.valid) {
+            rc.answers.push("pass");
+            rc.setAttribute("data-step", "9");
+          }
+        });
+        break;
+
+      case "9":
+        this.appContent.innerHTML = `
         <div class="row">
         <p>Have you attended a homebuyer education course and received a certificate of completion?</p>
         </div>
@@ -258,33 +286,6 @@ export default class DPASurvey extends HTMLElement {
               if (e.target.getAttribute("data-label") == "Yes") {
                 // TODO: Ask for agency name in dropdown list.
                 rc.answers.push("pass");
-                rc.setAttribute("data-step", "9");
-              } else {
-                rc.setAttribute("data-step", "7");
-              }
-            }
-          });
-        });
-        break;
-
-      case "9":
-        this.appContent.innerHTML = `
-        <div class="row">
-        <p>Have you identified the property you want to receive down payment assistance to purchase?</p>
-        </div>
-        <div class="d-flex">
-        <div class="m-auto">
-        <cod-button data-id="yes" data-label="Yes" data-background-color="primary" data-primary="true" data-img-alt="" data-icon=""></cod-button>
-        <cod-button data-id="no" data-background-color="primary" data-label="No" data-primary="true" data-img-alt="" data-icon=""></cod-button>
-        </div>
-        </div>
-        `;
-        qBtns = shadow.querySelectorAll("cod-button");
-        qBtns.forEach((btn) => {
-          btn.addEventListener("click", (e) => {
-            if (e.target.getAttribute("data-label") != null) {
-              if (e.target.getAttribute("data-label") == "Yes") {
-                rc.answers.push("pass");
                 rc.setAttribute("data-step", "10");
               } else {
                 rc.setAttribute("data-step", "7");
@@ -297,7 +298,7 @@ export default class DPASurvey extends HTMLElement {
       case "10":
         this.appContent.innerHTML = `
         <div class="row">
-        <p>Do you have a purchase agreement?</p>
+        <p>Have you identified the property you want to receive down payment assistance to purchase?</p>
         </div>
         <div class="d-flex">
         <div class="m-auto">
@@ -322,6 +323,33 @@ export default class DPASurvey extends HTMLElement {
         break;
 
       case "11":
+        this.appContent.innerHTML = `
+        <div class="row">
+        <p>Do you have a purchase agreement?</p>
+        </div>
+        <div class="d-flex">
+        <div class="m-auto">
+        <cod-button data-id="yes" data-label="Yes" data-background-color="primary" data-primary="true" data-img-alt="" data-icon=""></cod-button>
+        <cod-button data-id="no" data-background-color="primary" data-label="No" data-primary="true" data-img-alt="" data-icon=""></cod-button>
+        </div>
+        </div>
+        `;
+        qBtns = shadow.querySelectorAll("cod-button");
+        qBtns.forEach((btn) => {
+          btn.addEventListener("click", (e) => {
+            if (e.target.getAttribute("data-label") != null) {
+              if (e.target.getAttribute("data-label") == "Yes") {
+                rc.answers.push("pass");
+                rc.setAttribute("data-step", "12");
+              } else {
+                rc.setAttribute("data-step", "7");
+              }
+            }
+          });
+        });
+        break;
+
+      case "12":
         this.appContent.innerHTML = `
         <div class="row">
             <p><strong>You are ready to go!</strong></p>
