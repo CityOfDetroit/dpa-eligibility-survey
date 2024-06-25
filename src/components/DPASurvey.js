@@ -153,42 +153,42 @@ export default class DPASurvey extends HTMLElement {
         <table class="table">
             <thead> 
                 <tr>
-                    <th>People</th>
+                    <th>Number of People in Household</th>
                     <th>Income</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
                     <td>1</td>
-                    <td>$43,740</td>
+                    <td>$45,180</td>
                 </tr>
                 <tr>
                     <td>2</td>
-                    <td>$59,160</td>
+                    <td>$61,320</td>
                 </tr>
                 <tr>
                     <td>3</td>
-                    <td>$74,580</td>
+                    <td>$77,460</td>
                 </tr>
                 <tr>
                     <td>4</td>
-                    <td>$90,000</td>
+                    <td>$93,600</td>
                 </tr>
                 <tr>
                     <td>5</td>
-                    <td>$105,420</td>
+                    <td>$109,740</td>
                 </tr>
                 <tr>
                     <td>6</td>
-                    <td>$120,840</td>
+                    <td>$125,880</td>
                 </tr>
                 <tr>
                     <td>7</td>
-                    <td>$136,260</td>
+                    <td>$142,020</td>
                 </tr>
                 <tr>
                     <td>8</td>
-                    <td>$151,680</td>
+                    <td>$158,160</td>
                 </tr>
             </tbody>
         </table>
