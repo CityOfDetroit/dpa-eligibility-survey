@@ -463,7 +463,7 @@ export default class DPASurvey extends HTMLElement {
         <div class="row">
             <p><strong>You are ready to go!</strong></p>
             <p>Please use the link provided to fill out the application form.</p>
-            <p><em>Note: All incomplete applications would not be process.</em></p>
+            <p><em>Note: Incomplete applications will not be processed.</em></p>
         </div>
         <div class="d-flex">
           <div class="m-auto">
