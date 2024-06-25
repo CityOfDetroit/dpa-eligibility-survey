@@ -101,9 +101,9 @@ export default class DPASurvey extends HTMLElement {
       case "2":
         this.appContent.innerHTML = `
         <div class="row">
-          <p><strong>Unfortunately, you may not qualify for the Detroit Downpayment Assistance program because you do not meet the residency requirements.</strong></p>
+          <p><strong>Unfortunately, you may not be eligible for the Detroit Downpayment Assistance program because you do not meet the residency requirements.</strong></p>
           <p>In order to receive this assistance, you must have residency verification documents showing you lived in the City of Detroit for the last 12 months or lost property to tax foreclosure in the City of Detroit between 2010 – 2016.</p>
-          <p>If your circumstances change you may qualify in the future.</p>
+          <p>If your circumstances change, you may qualify in the future.</p>
         </div>
         <div class="d-flex">
           <div class="ms-auto">
@@ -223,9 +223,9 @@ export default class DPASurvey extends HTMLElement {
       case "5":
         this.appContent.innerHTML = `
         <div class="row">
-        <p><strong>Unfortunately, you may not qualify for the Detroit Downpayment Assistance program because you do not meet income requirements.</strong></p>
+        <p><strong>Unfortunately, you may not be eligible for the Detroit Downpayment Assistance program because you do not meet the income requirements.</strong></p>
         <p>In order to receive this assistance, you must fall within the income guidelines.</p>
-        <p>If your circumstances change you may qualify in the future.</p>
+        <p>If your circumstances change, you may qualify in the future.</p>
         </div>
         <div class="d-flex">
           <div class="ms-auto">
