@@ -117,7 +117,7 @@ export default class DPASurvey extends HTMLElement {
       case "3":
         this.appContent.innerHTML = `
         <div class="row">
-        <p>Can you produce residency verification documents such as an ID issued at least 12-months prior at a Detroit address, signed lease agreement, 12 months of bill statements with a strong preference for utility bills, etc?</p>
+        <p>Can you produce residency documents such as an ID issued at least 12-months prior at a Detroit address OR signed lease agreement OR 12 months of bill statements with a strong preference for utility bills, etc?</p>
         </div>
         <div class="d-flex">
           <div class="m-auto">
