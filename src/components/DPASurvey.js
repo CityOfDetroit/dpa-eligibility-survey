@@ -138,6 +138,38 @@ export default class DPASurvey extends HTMLElement {
                 rc.answers.push("pass");
                 rc.setAttribute("data-step", "4");
               } else {
+                rc.setAttribute("data-step", "3.5");
+              }
+            }
+          });
+        });
+        this.attachBackButtonEvent(shadow, rc);
+        break;
+
+      case "3.5":
+        this.appContent.innerHTML = `
+        <div class="row">
+        <p>Can you produce an address proving that you lost a home to property tax foreclosure in the City of Detroit between 2010-2016?</p>
+        </div>
+        <div class="d-flex">
+          <div class="m-auto">
+            <cod-button data-id="yes" data-label="Yes" data-background-color="primary" data-primary="true" data-img-alt="" data-icon=""></cod-button>
+            <cod-button data-id="no" data-background-color="primary" data-label="No" data-primary="true" data-img-alt="" data-icon=""></cod-button>
+          </div>
+          <div>
+            <cod-button data-id="back" data-label="Back" data-background-color="primary" data-primary="false" data-img-alt="" data-icon=""></cod-button>
+          </div>
+        </div>
+        `;
+        qBtns = shadow.querySelectorAll("cod-button[data-id='yes'], cod-button[data-id='no']");
+        qBtns.forEach((btn) => {
+          btn.addEventListener("click", (e) => {
+            if (e.target.getAttribute("data-label") != null) {
+              this.updateStepStack(step);
+              if (e.target.getAttribute("data-label") == "Yes") {
+                rc.answers.push("pass");
+                rc.setAttribute("data-step", "4");
+              } else {
                 rc.setAttribute("data-step", "2");
               }
             }
